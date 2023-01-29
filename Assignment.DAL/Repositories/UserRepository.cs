@@ -1,6 +1,7 @@
 ﻿using Assignment.DAL.Contexts;
 using Assignment.DTO.Entities;
 using Assignment.DTO.Interfaces.IRepositories;
+using Assignment.DTO.Models.User.ListPersonUsers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -97,6 +98,66 @@ namespace Assignment.DAL.Repositories
 			return _context.CompanyUser.ToList();
 		}
 
+		public List<PersonUserEntity> ListPersonUser(int skip, int take, string orderBy, string orderDirection)
+		{
+			var SortParameters = new Dictionary<string, Func<PersonUserEntity, object>>()
+			{
+				{"CardID", x => x.CardID},
+				{"DateOfBirth", x => x.DateOfBirth},
+				{"Name", x => x.Name},
+				{"CompanyName", x => x.CompanyName},
+			};
+
+			if(orderDirection == "DESC")
+			{
+				return _context.PersonUser
+					.OrderBy(SortParameters[orderBy])
+					.Skip(skip)
+					.Take(take)
+					.ToList();
+			}
+			else
+			{
+				return _context.PersonUser
+					.OrderByDescending(SortParameters[orderBy])
+					.Skip(skip)
+					.Take(take)
+					.ToList();
+			}
+		}
+
+		public List<CompanyUserEntity> ListCompanyUser(int skip, int take, string orderBy, string orderDirection)
+		{
+			var SortParameters = new Dictionary<string, Func<CompanyUserEntity, object>>()
+			{
+				{"TaxID", x => x.TaxID},
+				{"CompanyName", x => x.CompanyName},
+			};
+
+			if (orderDirection == "DESC")
+			{
+				return _context.CompanyUser
+					.OrderBy(SortParameters[orderBy])
+					.Skip(skip)
+					.Take(take)
+					.ToList();
+			}
+			else
+			{
+				return _context.CompanyUser
+					.OrderByDescending(SortParameters[orderBy])
+					.Skip(skip)
+					.Take(take)
+					.ToList();
+			}
+		}
+
 		public CompanyUserEntity GetCompanyUserById(int id) => _context.CompanyUser.Where(s => s.Id == id).FirstOrDefault();
+
+		public PersonUserEntity GetPersonUserByCardID(string cardID) => _context.PersonUser.Where(s => s.CardID == cardID).FirstOrDefault();
+
+		public CompanyUserEntity GetCompanyUserByTaxID(string taxID) => _context.CompanyUser.Where(s => s.TaxID == taxID).FirstOrDefault();
+
+
 	}
 }

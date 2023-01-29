@@ -20,5 +20,9 @@ namespace Assignment.DTO.Interfaces.IServices
 		Task<ListPersonUsersResponse> ListAllPersonUser();
 
 		Task<ListCompanyUserResponse> ListAllCompanyUser();
+
+		Task<ListPersonUsersResponse> ListPersonUsers(ListPersonUsersRequest request);
+
+		Task<ListCompanyUserResponse> ListCompanyUsers(ListCompanyUsersRequest request);
 	}
 }

@@ -10,7 +10,7 @@ namespace Assignment.DTO.Interfaces.IRepositories
 	public interface IUserRepository
 	{
 		int AddPersonUser(PersonUserEntity entity);
-		
+
 		int AddCompanyUser(CompanyUserEntity entity);
 
 		List<PersonUserEntity> ListAllPersonUser();
@@ -18,5 +18,14 @@ namespace Assignment.DTO.Interfaces.IRepositories
 		List<CompanyUserEntity> ListAllCompanyUser();
 
 		CompanyUserEntity GetCompanyUserById(int id);
+
+		List<PersonUserEntity> ListPersonUser(int skip, int take, string orderBy, string orderDirection);
+
+		List<CompanyUserEntity> ListCompanyUser(int skip, int take, string orderBy, string orderDirection);
+
+		PersonUserEntity GetPersonUserByCardID(string cardID);
+
+		CompanyUserEntity GetCompanyUserByTaxID(string taxID);
+
 	}
 }

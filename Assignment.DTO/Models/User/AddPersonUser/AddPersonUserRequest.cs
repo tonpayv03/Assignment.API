@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Assignment.DTO.Attributes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -21,10 +22,8 @@ namespace Assignment.DTO.Models.User.AddPersonUser
 		[Required(ErrorMessage = "Please input Surname")]
 		public string Surname { get; set; }
 
-        public int CompanyId { get; set; }
-
-		[Required(ErrorMessage = "Please select Company Name")]
-		public string CompanyName { get; set; }
+		[RequiredGreaterThanZero(ErrorMessage = "Please select Company")]
+		public int CompanyId { get; set; }
 
 		[Required(ErrorMessage = "Please input Email")]
 		public string Email { get; set; }

@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Assignment.DTO.Models.User.ListPersonUsers
+namespace Assignment.DTO.Models.User.ListCompanyUsers
 {
-	public class ListPersonUsersRequest : BaseRequest
+	public class ListCompanyUsersRequest : BaseRequest
 	{
 		public int Skip { get; set; }
 

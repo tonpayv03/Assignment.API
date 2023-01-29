@@ -8,6 +8,8 @@ namespace Assignment.DTO.Models.User.ListCompanyUsers
 {
 	public class CompanyUserDetail
 	{
+		public int Id { get; set; }
+
 		public string TaxID { get; set; }
 
 		public string CompanyName { get; set; }

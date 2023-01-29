@@ -8,6 +8,8 @@ namespace Assignment.DTO.Models.User.ListPersonUsers
 {
 	public class ListPersonUsersResponse : BaseResponse
 	{
-		public List<PersonUserDetail> Users { get; set; }
+		public List<PersonUserDetail> Persons { get; set; }
+
+		public int TotalRecord { get; set; }
 	}
 }

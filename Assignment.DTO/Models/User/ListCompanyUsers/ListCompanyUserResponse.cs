@@ -10,5 +10,7 @@ namespace Assignment.DTO.Models.User.ListCompanyUsers
 	public class ListCompanyUserResponse : BaseResponse
 	{
 		public List<CompanyUserDetail> Companies { get; set; }
+
+		public int TotalRecord { get; set; }
 	}
 }

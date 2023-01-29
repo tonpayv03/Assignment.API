@@ -6,6 +6,8 @@ using Assignment.API.Middlewares;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Data;
+using Assignment.DTO.Models.User.ListPersonUsers;
+using Assignment.DTO.Models.User.ListCompanyUsers;
 
 namespace Assignment.API.Controllers
 {
@@ -49,6 +51,34 @@ namespace Assignment.API.Controllers
 			}
 		}
 
+		//[HttpPost("ListPersonUser")]
+		//public async Task<IActionResult> ListPersonUser([FromBody] AddCompanyUserRequest request)
+		//{
+		//	try
+		//	{
+		//		var result = await _userService.ListAllPersonUser(request);
+		//		return StatusCode(result.StatusCode, result);
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		return StatusCode(StatusCodes.Status500InternalServerError, Helpers.InternalServerErrorResponse());
+		//	}
+		//}
+
+		//[HttpPost("ListCompanyUser")]
+		//public async Task<IActionResult> ListCompanyUser([FromBody] AddCompanyUserRequest request)
+		//{
+		//	try
+		//	{
+		//		var result = await _userService.ListCompanyUser(request);
+		//		return StatusCode(result.StatusCode, result);
+		//	}
+		//	catch (Exception ex)
+		//	{
+		//		return StatusCode(StatusCodes.Status500InternalServerError, Helpers.InternalServerErrorResponse());
+		//	}
+		//}
+
 		[HttpGet("ListAllPersonUser")]
 		public async Task<IActionResult> ListAllPersonUser()
 		{
@@ -70,6 +100,34 @@ namespace Assignment.API.Controllers
 			try
 			{
 				var result = await _userService.ListAllCompanyUser();
+				return StatusCode(result.StatusCode, result);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError, Helpers.InternalServerErrorResponse());
+			}
+		}
+
+		[HttpPost("ListPersonUsers")]
+		public async Task<IActionResult> ListPersonUsers(ListPersonUsersRequest request)
+		{
+			try
+			{
+				var result = await _userService.ListPersonUsers(request);
+				return StatusCode(result.StatusCode, result);
+			}
+			catch (Exception ex)
+			{
+				return StatusCode(StatusCodes.Status500InternalServerError, Helpers.InternalServerErrorResponse());
+			}
+		}
+
+		[HttpPost("ListCompanyUsers")]
+		public async Task<IActionResult> ListCompanyUsers(ListCompanyUsersRequest request)
+		{
+			try
+			{
+				var result = await _userService.ListCompanyUsers(request);
 				return StatusCode(result.StatusCode, result);
 			}
 			catch (Exception ex)

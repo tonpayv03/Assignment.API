@@ -8,9 +8,11 @@ namespace Assignment.DTO.Models.User.ListPersonUsers
 {
 	public class PersonUserDetail
 	{
+		public int Id { get; set; }
+
 		public string CardID { get; set; }
 
-		public DateTime DateOfBirth { get; set; }
+		public string DateOfBirth { get; set; }
 
 		public string Name { get; set; }
 

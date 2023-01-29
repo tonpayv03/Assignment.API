@@ -25,17 +25,25 @@ namespace Assignment.BSL.Services
 			_userRepository = userRepository;
 			_logger = logger;
 		}
+
 		public async Task<AddPersonUserResponse> AddPersonUser(AddPersonUserRequest request)
 		{
 			var response = new AddPersonUserResponse();
 			try
 			{
-
 				var company = _userRepository.GetCompanyUserById(request.CompanyId);
 				if (company == null)
 				{
 					response.StatusCode = StatusCodes.Status404NotFound;
 					response.ErrorMessage = "Company not found";
+					return response;
+				}
+
+				var person = _userRepository.GetPersonUserByCardID(request.CardID);
+				if(person != null)
+				{
+					response.StatusCode = StatusCodes.Status400BadRequest;
+					response.ErrorMessage = "Card ID is already exist";
 					return response;
 				}
 
@@ -46,7 +54,7 @@ namespace Assignment.BSL.Services
 					Name = request.Name,
 					Surname = request.Surname,
 					CompanyId = request.CompanyId,
-					CompanyName = request.CompanyName,
+					CompanyName = company.CompanyName,
 					Email = request.Email,
 					Address = request.Address,
 					Telephone = request.Telephone
@@ -76,6 +84,14 @@ namespace Assignment.BSL.Services
 			var response = new AddCompanyUserResponse();
 			try
 			{
+				var company = _userRepository.GetCompanyUserByTaxID(request.TaxID);
+				if (company != null)
+				{
+					response.StatusCode = StatusCodes.Status400BadRequest;
+					response.ErrorMessage = "Tax ID is already exist";
+					return response;
+				}
+
 				var entity = new CompanyUserEntity()
 				{
 					TaxID = request.TaxID,
@@ -108,7 +124,7 @@ namespace Assignment.BSL.Services
 		{
 			var response = new ListPersonUsersResponse()
 			{
-				Users = new List<PersonUserDetail>()
+				Persons = new List<PersonUserDetail>()
 			};
 
 			try
@@ -121,12 +137,14 @@ namespace Assignment.BSL.Services
 					return response;
 				}
 
+				int countRecord = 0;
 				foreach (var item in result)
 				{
 					var model = new PersonUserDetail()
 					{
+						Id = item.Id,
 						CardID = item.CardID,
-						DateOfBirth = item.DateOfBirth,
+						DateOfBirth = item.DateOfBirth.Date.ToString(),
 						Name = item.Name,
 						Surname = item.Surname,
 						CompanyName = item.CompanyName,
@@ -135,9 +153,11 @@ namespace Assignment.BSL.Services
 						Telephone = item.Telephone
 					};
 
-					response.Users.Add(model);
+					response.Persons.Add(model);
+					countRecord += 1;
 				}
 
+				response.TotalRecord = countRecord;
 				response.IsSuccess = true;
 				return response;
 			}
@@ -166,10 +186,106 @@ namespace Assignment.BSL.Services
 					return response;
 				}
 
+				int countRecord = 0;
 				foreach (var item in result)
 				{
 					var model = new CompanyUserDetail()
 					{
+						Id = item.Id,
+						TaxID = item.TaxID,
+						CompanyName = item.CompanyName,
+						Email = item.Email,
+						Address = item.Address,
+						Telephone = item.Telephone
+					};
+
+					response.Companies.Add(model);
+					countRecord += 1;
+				}
+
+				response.TotalRecord = countRecord;
+				response.IsSuccess = true;
+				return response;
+			}
+			catch (Exception ex)
+			{
+				string message = $"[ListAllCompanyUser]:{DateTime.Now}:::{ex.Message}";
+				_logger.LogError(message);
+				throw ex;
+			}
+		}
+
+		public async Task<ListPersonUsersResponse> ListPersonUsers(ListPersonUsersRequest request)
+		{
+			var response = new ListPersonUsersResponse()
+			{
+				Persons = new List<PersonUserDetail>()
+			};
+
+			try
+			{
+				var result = _userRepository.ListPersonUser(request.Skip, request.Take, request.OrderBy, request.OrderDirection);
+				var total = _userRepository.ListAllPersonUser()?.Count;
+				if (result is null || result?.Count == 0)
+				{
+					response.StatusCode = StatusCodes.Status404NotFound;
+					response.ErrorMessage = "Data Not found";
+					return response;
+				}
+
+				foreach (var item in result)
+				{
+					var model = new PersonUserDetail()
+					{
+						Id = item.Id,
+						CardID = item.CardID,
+						DateOfBirth = item.DateOfBirth.Date.ToString("yyyy-MM-dd"),
+						Name = item.Name,
+						Surname = item.Surname,
+						CompanyName = item.CompanyName,
+						Email = item.Email,
+						Address = item.Address,
+						Telephone = item.Telephone
+					};
+
+					response.Persons.Add(model);
+				}
+
+				response.TotalRecord = total ?? 0;
+				response.IsSuccess = true;
+				return response;
+			}
+			catch (Exception ex)
+			{
+				string message = $"[ListPersonUsers]:{DateTime.Now}:::{ex.Message}";
+				_logger.LogError(message);
+				throw ex;
+			}
+		}
+
+		public async Task<ListCompanyUserResponse> ListCompanyUsers(ListCompanyUsersRequest request)
+		{
+			var response = new ListCompanyUserResponse()
+			{
+				Companies = new List<CompanyUserDetail>()
+			};
+
+			try
+			{
+				var result = _userRepository.ListCompanyUser(request.Skip, request.Take, request.OrderBy, request.OrderDirection);
+				var total = _userRepository.ListAllCompanyUser()?.Count;
+				if (result is null || result?.Count == 0)
+				{
+					response.StatusCode = StatusCodes.Status404NotFound;
+					response.ErrorMessage = "Data Not found";
+					return response;
+				}
+
+				foreach (var item in result)
+				{
+					var model = new CompanyUserDetail()
+					{
+						Id = item.Id,
 						TaxID = item.TaxID,
 						CompanyName = item.CompanyName,
 						Email = item.Email,
@@ -180,12 +296,13 @@ namespace Assignment.BSL.Services
 					response.Companies.Add(model);
 				}
 
+				response.TotalRecord = total ?? 0;
 				response.IsSuccess = true;
 				return response;
 			}
 			catch (Exception ex)
 			{
-				string message = $"[ListAllCompanyUser]:{DateTime.Now}:::{ex.Message}";
+				string message = $"[ListCompanyUsers]:{DateTime.Now}:::{ex.Message}";
 				_logger.LogError(message);
 				throw ex;
 			}
