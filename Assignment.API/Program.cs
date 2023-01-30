@@ -61,6 +61,8 @@ namespace Assignment.API
 				app.UseSwaggerUI();
 			}
 
+			app.UseStaticFiles();
+
 			app.UseHttpsRedirection();
 
 			app.UseAuthorization();
@@ -76,9 +78,11 @@ namespace Assignment.API
 			services.AddScoped<ValidationFilterAttribute>();
 
 			services.AddScoped<IUserService, UserService>();
+			services.AddScoped<IFruitService, FruitService>();
 
 			services.AddScoped<IUserRepository, UserRepository>();
 			services.AddScoped<IActionRepository, ActionRepository>();
+			services.AddScoped<IFruitResopository, FruitRepository>();
 		}
 	}
 }

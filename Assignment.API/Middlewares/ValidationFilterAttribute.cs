@@ -12,7 +12,7 @@ namespace Assignment.API.Middlewares
 			var param = context.ActionArguments.SingleOrDefault(p => p.Value is BaseRequest);
 			if (param.Value == null && context.HttpContext.Request.Method != "GET")
 			{
-				context.Result = new BadRequestObjectResult("Object is null");
+				context.Result = new BadRequestObjectResult("The object do not extends BaseRequest");
 				return;
 			}
 

@@ -15,6 +15,7 @@ namespace Assignment.DAL.Contexts
 	{
 		public DbSet<PersonUserEntity> PersonUser { get; set; }
 		public DbSet<CompanyUserEntity> CompanyUser { get; set; }
+		public DbSet<FruitEntity> Fruit { get; set; }
 
 		//public DbSet<InformationEntity> Informations { get; set; }
 

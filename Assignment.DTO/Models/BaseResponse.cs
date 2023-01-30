@@ -11,7 +11,8 @@ namespace Assignment.DTO.Models
     {
         public bool IsSuccess { get; set; }
 
-        public int StatusCode { get; set; } = StatusCodes.Status200OK;
+
+		public int StatusCode { get; set; } = StatusCodes.Status200OK;
 
 		public string ErrorMessage { get; set; } = "Success";
     }

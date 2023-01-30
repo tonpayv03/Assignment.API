@@ -21,13 +21,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Assignment.BSL\Assignment.BSL.csproj" />
     <ProjectReference Include="..\Assignment.DAL\Assignment.DAL.csproj" />
     <ProjectReference Include="..\Assignment.DTO\Assignment.DTO.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Images\" />
   </ItemGroup>
 
 </Project>
