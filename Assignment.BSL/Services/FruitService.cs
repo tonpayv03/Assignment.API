@@ -119,6 +119,7 @@ namespace Assignment.BSL.Services
 					return response;
 				}
 
+				result = result.OrderByDescending(s => s.Id).ToList();
 				foreach (var item in result)
 				{
 					var model = new FruitDetail()
@@ -131,6 +132,7 @@ namespace Assignment.BSL.Services
 					response.Fruits.Add(model);
 				}
 
+				
 				response.IsSuccess = true;
 				return response;
 			}

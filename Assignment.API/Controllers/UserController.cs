@@ -51,34 +51,6 @@ namespace Assignment.API.Controllers
 			}
 		}
 
-		//[HttpPost("ListPersonUser")]
-		//public async Task<IActionResult> ListPersonUser([FromBody] AddCompanyUserRequest request)
-		//{
-		//	try
-		//	{
-		//		var result = await _userService.ListAllPersonUser(request);
-		//		return StatusCode(result.StatusCode, result);
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		return StatusCode(StatusCodes.Status500InternalServerError, Helpers.InternalServerErrorResponse());
-		//	}
-		//}
-
-		//[HttpPost("ListCompanyUser")]
-		//public async Task<IActionResult> ListCompanyUser([FromBody] AddCompanyUserRequest request)
-		//{
-		//	try
-		//	{
-		//		var result = await _userService.ListCompanyUser(request);
-		//		return StatusCode(result.StatusCode, result);
-		//	}
-		//	catch (Exception ex)
-		//	{
-		//		return StatusCode(StatusCodes.Status500InternalServerError, Helpers.InternalServerErrorResponse());
-		//	}
-		//}
-
 		[HttpGet("ListAllPersonUser")]
 		public async Task<IActionResult> ListAllPersonUser()
 		{
@@ -92,7 +64,6 @@ namespace Assignment.API.Controllers
 				return StatusCode(StatusCodes.Status500InternalServerError, Helpers.InternalServerErrorResponse());
 			}
 		}
-
 
 		[HttpGet("ListAllCompanyUser")]
 		public async Task<IActionResult> ListAllCompanyUser()

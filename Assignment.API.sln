@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33205.214
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.API", "Assignment.API\Assignment.API.csproj", "{F7183194-581F-444D-BC7F-8B2CBEF918D4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.API", "Assignment.API\Assignment.API.csproj", "{F7183194-581F-444D-BC7F-8B2CBEF918D4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.BSL", "Assignment.BSL\Assignment.BSL.csproj", "{717702C6-852A-4DFE-B98F-7A03526AF091}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.BSL", "Assignment.BSL\Assignment.BSL.csproj", "{717702C6-852A-4DFE-B98F-7A03526AF091}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.DAL", "Assignment.DAL\Assignment.DAL.csproj", "{4EA4345E-4ED8-49A9-8126-BFB4ADEDACC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.DAL", "Assignment.DAL\Assignment.DAL.csproj", "{4EA4345E-4ED8-49A9-8126-BFB4ADEDACC5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assignment.DTO", "Assignment.DTO\Assignment.DTO.csproj", "{E4837237-5F23-445C-8E2C-B9092B36A707}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Assignment.DTO", "Assignment.DTO\Assignment.DTO.csproj", "{E4837237-5F23-445C-8E2C-B9092B36A707}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{55152705-A118-4745-8761-B9B1624557FD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{E4837237-5F23-445C-8E2C-B9092B36A707}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E4837237-5F23-445C-8E2C-B9092B36A707}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E4837237-5F23-445C-8E2C-B9092B36A707}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55152705-A118-4745-8761-B9B1624557FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55152705-A118-4745-8761-B9B1624557FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55152705-A118-4745-8761-B9B1624557FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55152705-A118-4745-8761-B9B1624557FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
